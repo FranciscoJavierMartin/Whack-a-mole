@@ -14,7 +14,7 @@ import GameOver from './GameOver';
 import Pause from './Pause';
 import Clear from './Clear';
 
-const DEFAULT_TIME = 5;
+const DEFAULT_TIME = 15;
 const DEFAULT_STATE = {
     level: 1,
     score: 0,
