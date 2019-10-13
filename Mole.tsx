@@ -4,16 +4,15 @@ import Images from './assets/Images';
 import SpriteSheet from 'rn-sprite-sheet';
 
 interface IMoleProps {
-  index: number;
   onScore: () => void;
   onHeal: () => void;
   onDamage: () => void;
-  onFinishPopping: (index: number) => void;
+  onFinishPopping: () => void;
 }
 
 export default class Mole extends Component<IMoleProps> {
-  mole: any;
-  actionTimeout: any;
+  mole: SpriteSheet;
+  actionTimeout: number;
   isPopping: boolean;
   isFeisty: boolean;
   isHealing: boolean;
@@ -53,7 +52,7 @@ export default class Mole extends Component<IMoleProps> {
               fps: 24,
               onFinish: () => {
                 this.isPopping = false;
-                this.props.onFinishPopping(this.props.index);
+                this.props.onFinishPopping();
               }
             });
           }, 1000);
@@ -77,7 +76,7 @@ export default class Mole extends Component<IMoleProps> {
                     fps: 24,
                     onFinish: () => {
                       this.isPopping = false;
-                      this.props.onFinishPopping(this.props.index);
+                      this.props.onFinishPopping();
                     }
                   });
                 }
@@ -90,7 +89,7 @@ export default class Mole extends Component<IMoleProps> {
                 fps: 24,
                 onFinish: () => {
                   this.isPopping = false;
-                  this.props.onFinishPopping(this.props.index);
+                  this.props.onFinishPopping();
                 }
               });
             }, 1000);
@@ -123,7 +122,7 @@ export default class Mole extends Component<IMoleProps> {
             fps: 24,
             onFinish: () => {
               this.isPopping = false;
-              this.props.onFinishPopping(this.props.index);
+              this.props.onFinishPopping();
             }
           });
         }
@@ -135,7 +134,7 @@ export default class Mole extends Component<IMoleProps> {
     return (
       <View style={{ flex: 1 }}>
         <SpriteSheet
-          ref={ref => (this.mole = ref)}
+          ref={(ref: SpriteSheet) => (this.mole = ref)}
           source={Images.sprites}
           columns={6}
           rows={8}
